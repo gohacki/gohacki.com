@@ -1,37 +1,125 @@
 // src/components/ThemeToggle.tsx
-"use client"; // Ensures the component is rendered on the client side
+"use client";
 
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+const storageKey = "theme-preference";
 
-  // Ensures the component is mounted before accessing the theme to prevent hydration mismatch
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  // Function to get the current theme preference
+  const getColorPreference = (): "light" | "dark" => {
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem(storageKey);
+      if (storedTheme === "light" || storedTheme === "dark") {
+        return storedTheme;
+      } else {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+    }
+    return "light"; // Default to light
+  };
+
+  // Function to apply the theme to the document
+  const reflectPreference = (newTheme: "light" | "dark") => {
+    const root = document.documentElement;
+
+    // Set data-theme attribute
+    root.setAttribute("data-theme", newTheme);
+
+    // Toggle the 'dark' class for Tailwind CSS
+    if (newTheme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+
+    // Update aria-label for accessibility
+    const toggleButton = document.querySelector(
+      "#theme-toggle"
+    ) as HTMLButtonElement | null;
+    if (toggleButton) {
+      toggleButton.setAttribute("aria-label", newTheme);
+    }
+  };
+
+  // Function to set the theme preference
+  const setPreference = (newTheme: "light" | "dark") => {
+    localStorage.setItem(storageKey, newTheme);
+    reflectPreference(newTheme);
+  };
+
+  // Toggle theme on button click
+  const onClick = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    setPreference(newTheme);
+  };
+
+  // Initialize theme on component mount
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    const currentTheme = getColorPreference();
+    setTheme(currentTheme);
+    reflectPreference(currentTheme);
 
-  if (!mounted) return null; // Avoid rendering until mounted
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      const newSystemTheme = e.matches ? "dark" : "light";
+      setTheme(newSystemTheme);
+      setPreference(newSystemTheme);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   return (
     <button
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 focus:outline-none"
-      aria-label="Toggle Dark Mode"
+      className="theme-toggle"
+      id="theme-toggle"
+      title="Toggle light & dark mode"
+      aria-label={theme}
+      aria-live="polite"
+      onClick={onClick}
     >
-      {theme === 'light' ? (
-        // Sun Icon for Light Mode
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12.34h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 5a7 7 0 100 14 7 7 0 000-14z" />
-        </svg>
-      ) : (
-        // Moon Icon for Dark Mode
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-        </svg>
-      )}
+      <svg
+        className="sun-and-moon"
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <mask className="moon" id="moon-mask">
+          <rect x="0" y="0" width="100%" height="100%" fill="white" />
+          <circle cx="24" cy="10" r="6" fill="black" />
+        </mask>
+        <circle
+          className="sun"
+          cx="12"
+          cy="12"
+          r="6"
+          mask="url(#moon-mask)"
+          fill="currentColor"
+        />
+        <g className="sun-beams" stroke="currentColor">
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </g>
+      </svg>
     </button>
   );
-}
+};
+
+export default ThemeToggle;
