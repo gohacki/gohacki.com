@@ -1,20 +1,19 @@
-// src/app/page.tsx
-import SpiralArrow from '../components/SpiralArrow';
 import Image from 'next/image';
+import SpiralArrow from '../components/SpiralArrow';
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center text-center pt-32">
+      <SpiralArrow />
       <div className="relative z-10 mb-8"> {/* Adjust margin-top as needed */}
         <Image
           src="/images/miro.png" // Ensure your picture is in public/images/
           alt="Miro Gohacki"
           width={200}
           height={200}
-          className="rounded-full border-4 border-pink-500 shadow-lg"
+          className="rounded-full border-2 border-pink-500 shadow-lg"
         />
       </div>
-      {/* <SpiralArrow /> */}
       <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg mb-6 animate-fadeInUp">
         Miro Gohacki
       </h1>

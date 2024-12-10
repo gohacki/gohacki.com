@@ -19,6 +19,12 @@ export default function Header() {
           </Link>
           <Link
             className="text-lg font-semibold hover:text-pink-500 transition-colors duration-300 hover:scale-105 transform"
+            href="/projects"
+          >
+            Projects
+          </Link>
+          <Link
+            className="text-lg font-semibold hover:text-pink-500 transition-colors duration-300 hover:scale-105 transform"
             href="/about"
           >
             About
@@ -29,6 +35,7 @@ export default function Header() {
           >
             Contact
           </Link>
+          
           {/* Theme Toggle Button */}
           <ThemeToggle />
         </div>

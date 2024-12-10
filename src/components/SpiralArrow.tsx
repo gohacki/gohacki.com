@@ -1,57 +1,76 @@
 // src/components/SpiralArrow.tsx
 "use client";
-
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
 const SpiralArrow = () => {
-  const pathRef = useRef<SVGPathElement>(null);
-
-  useEffect(() => {
-    const path = pathRef.current;
-    if (path) {
-      const length = path.getTotalLength();
-      path.style.strokeDasharray = `${length}`;
-      path.style.strokeDashoffset = `${length}`;
-      path.style.animation = `draw 5s ease forwards`;
-    }
-  }, []);
-
   return (
     <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    className="w-full h-full"
-    aria-labelledby="squigglyArrowTitle"
-    role="img"
-  >
-    <title id="squigglyArrowTitle">Squiggly Arrow from Top Right to Bottom Left</title>
-    <path
-      d="
-        M100,0
-        C90,15 80,0 70,15
-        S50,30 40,15
-        S30,0 20,15
-        S10,30 0,100
-      "
-      stroke="#6d28d9"
-      strokeWidth="2"
-      fill="none"
-      markerEnd="url(#arrowhead)"
-      className="squiggly-arrow"
-    />
-    <defs>
-      <marker
-        id="arrowhead"
-        markerWidth="10"
-        markerHeight="7"
-        refX="0"
-        refY="3.5"
-        orient="auto"
-      >
-        <polygon points="0 0, 10 3.5, 0 7" fill="#6d28d9" />
-      </marker>
-    </defs>
-  </svg>
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 800" /* Expanded viewBox for larger coverage */
+      className="absolute top-0 left-0 w-full h-full pointer-events-none"
+      aria-labelledby="spiralArrowTitle"
+      role="img"
+    >
+      <defs>
+        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6d28d9" />
+          <stop offset="100%" stopColor="#ef4444" />
+        </linearGradient>
+      </defs>
+      <title id="spiralArrowTitle">Animated Squiggly Lines Background</title>
+
+      {/* Lines originating from the left */}
+      <path
+        className="draw-path"
+        d="M-100,100 C200,150 400,50 600,100 S1000,150 1400,100"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+
+      {/* Lines originating from the right */}
+      <path
+        className="draw-path"
+        d="M1400,200 C1000,250 800,150 600,200 S200,250 -100,200"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+
+      {/* Lines originating from the top */}
+      <path
+        className="draw-path"
+        d="M100,0 C150,200 50,400 100,600 S150,800 100,1000"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+
+      {/* Lines originating from the bottom */}
+      <path
+        className="draw-path"
+        d="M200,800 C250,600 150,400 200,200 S250,0 200,-200"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+
+      <path
+        className="draw-path"
+        d="M0,0 C300,300 600,-300 900,0 S1500,300 1800,0"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+
+      <path
+        className="draw-path"
+        d="M0,800 C300,500 600,1100 900,800 S1500,500 1800,800"
+        stroke="url(#lineGradient)"
+        strokeWidth="4"
+        fill="none"
+      />
+    </svg>
   );
 };
 

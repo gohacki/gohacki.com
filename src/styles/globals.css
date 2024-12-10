@@ -1,3 +1,5 @@
+/* src/styles/globals.css */
+
 @import "open-props/easings.min.css";
 /* src/styles/globals.css */
 @tailwind base;
@@ -48,6 +50,39 @@ body {
   }
 }
 
+/* Animation for draw-path */
+.draw-path {
+  stroke-dasharray: 2000; /* Increased for longer paths */
+  stroke-dashoffset: 2000;
+  animation: draw 8s ease forwards;
+}
+
+/* Staggered animation delays for each path */
+.draw-path:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.draw-path:nth-of-type(2) {
+  animation-delay: 1s;
+}
+
+.draw-path:nth-of-type(3) {
+  animation-delay: 2s;
+}
+
+.draw-path:nth-of-type(4) {
+  animation-delay: 3s;
+}
+
+.draw-path:nth-of-type(5) {
+  animation-delay: 4s;
+}
+
+.draw-path:nth-of-type(6) {
+  animation-delay: 5s;
+}
+
+/* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   .animate-fadeInUp,
   .draw-path {
@@ -90,7 +125,7 @@ body {
   --icon-fill-hover: #ec4899;
 }
 
-/* Paste the snippet styles */
+/* Sun and Moon Icon Styles */
 .sun-and-moon > :is(.moon, .sun, .sun-beams) {
   transform-origin: center;
 }
