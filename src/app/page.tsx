@@ -9,8 +9,8 @@ export default function Home() {
         <Image
           src="/images/miro.png" // Ensure your picture is in public/images/
           alt="Miro Gohacki"
-          width={200}
-          height={200}
+          width={400}
+          height={400}
           className="rounded-full border-2 border-pink-500 shadow-lg"
         />
       </div>
