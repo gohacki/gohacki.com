@@ -201,3 +201,60 @@ body {
     transition-delay: .25s;
   }
 }
+
+
+/* Perspective for 3D flip effect */
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Spotify Embed Container with Gradient Overlay on Hover */
+.spotify-embed-container {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.spotify-embed-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6d28d9, #ec4899, #ef4444);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotify-embed-container:hover::before {
+  opacity: 0.2;
+}
+
+/* Circular Layout for Hobbies */
+@keyframes rotateIcons {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circular-hobbies {
+  animation: rotateIcons 20s linear infinite;
+}
+
+.circular-hobbies:hover {
+  animation-play-state: paused;
+}
