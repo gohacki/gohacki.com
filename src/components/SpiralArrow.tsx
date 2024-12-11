@@ -31,7 +31,7 @@ const SpiralArrow = () => {
       {/* Lines originating from the right */}
       <path
         className="draw-path"
-        d="M1400,200 C1000,250 800,150 600,200 S200,250 -100,200"
+        d="M1400,900 C1000,250 800,150 600,200 S200,250 -100,200"
         stroke="url(#lineGradient)"
         strokeWidth="4"
         fill="none"
@@ -49,7 +49,7 @@ const SpiralArrow = () => {
       {/* Lines originating from the bottom */}
       <path
         className="draw-path"
-        d="M200,800 C250,600 150,400 200,200 S250,0 200,-200"
+        d="M200,800 C250,600 150,400 700,200 S250,0 1200,-200"
         stroke="url(#lineGradient)"
         strokeWidth="4"
         fill="none"

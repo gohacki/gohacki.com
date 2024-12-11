@@ -52,6 +52,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
           {children}
+          <div id="modal-root"></div>
         </main>
         <Footer />
       </body>
