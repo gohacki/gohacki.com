@@ -1,17 +1,29 @@
+// src/app/page.tsx
+"use client";
+import { useState } from 'react';
 import Image from 'next/image';
 import SpiralArrow from '../components/SpiralArrow';
+import blurDataURL from '../data/blurDataURL.json';
 
 export default function Home() {
+  const [isImageLoaded, setImageLoaded] = useState(false);
+
   return (
     <div className="flex flex-col items-center text-center pt-32">
       <SpiralArrow />
-      <div className="relative z-10 mb-8"> {/* Adjust margin-top as needed */}
+      <div className="relative z-10 mb-8">
         <Image
-          src="/images/miro.png" // Ensure your picture is in public/images/
+          src="/images/miro.png"
           alt="Miro Gohacki"
           width={400}
           height={400}
-          className="rounded-full border-2 border-pink-500 shadow-lg"
+          className={`rounded-full border-2 border-pink-500 shadow-lg transition-opacity duration-700 ease-in-out ${
+            isImageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoadingComplete={() => setImageLoaded(true)}
+          placeholder="blur"
+          blurDataURL={blurDataURL.blurDataURL}
+          priority
         />
       </div>
       <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg mb-6 animate-fadeInUp">
