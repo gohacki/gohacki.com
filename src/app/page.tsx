@@ -2,15 +2,15 @@
 "use client";
 import { useState } from 'react';
 import Image from 'next/image';
-import SpiralArrow from '../components/SpiralArrow';
+import BackgroundCanvas from '../components/BackgroundCanvas'; // Import the component
 import blurDataURL from '../data/blurDataURL.json';
 
 export default function Home() {
   const [isImageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="flex flex-col items-center text-center pt-32">
-      <SpiralArrow />
+    <div className="relative flex flex-col items-center text-center pt-32">
+      <BackgroundCanvas /> {/* Add the canvas here */}
       <div className="relative z-10 mb-8">
         <Image
           src="/images/miro.png"
@@ -20,7 +20,7 @@ export default function Home() {
           className={`rounded-full border-2 border-pink-500 shadow-lg transition-opacity duration-700 ease-in-out ${
             isImageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          onLoadingComplete={() => setImageLoaded(true)}
+          onLoad={() => setImageLoaded(true)}
           placeholder="blur"
           blurDataURL={blurDataURL.blurDataURL}
           priority
