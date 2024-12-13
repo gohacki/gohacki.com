@@ -1,16 +1,22 @@
 // src/app/page.tsx
 "use client";
-import { useState } from 'react';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
-import BackgroundCanvas from '../components/BackgroundCanvas'; // Import the component
+import BackgroundCanvas from '../components/BackgroundCanvas';
 import blurDataURL from '../data/blurDataURL.json';
+import SparklyButton from '../components/SparklyButton'; // Import the SparklyButton component
 
 export default function Home() {
   const [isImageLoaded, setImageLoaded] = useState(false);
+  const [colorValue, setColorValue] = useState<number>(260); // Default hue for sparkles
 
   return (
     <div className="relative flex flex-col items-center text-center pt-32">
-      <BackgroundCanvas /> {/* Add the canvas here */}
+      {/* Background Canvas */}
+      <BackgroundCanvas />
+    
+      {/* Profile Image */}
       <div className="relative z-10 mb-8">
         <Image
           src="/images/miro.png"
@@ -26,26 +32,42 @@ export default function Home() {
           priority
         />
       </div>
+
+      {/* Title */}
       <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg mb-6 animate-fadeInUp">
         Miro Gohacki
       </h1>
-      <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-xl mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+
+      {/* Subtitle */}
+      <p
+        className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-xl mb-8 animate-fadeInUp"
+        style={{ animationDelay: '0.2s' }}
+      >
         Hi! I&apos;m Miro, a Computer Science Student. Welcome to my personal website where you can learn more about me, my work, and how to get in touch.
       </p>
-      <div className="space-x-4 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
-        <a 
-          href="/about" 
-          className="inline-block px-6 py-3 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-600 transition-all duration-300 transform hover:scale-105"
-        >
+
+      {/* Sparkly Buttons */}
+      <div
+        className="flex justify-center space-x-4 animate-fadeInUp"
+        style={{ animationDelay: '0.4s' }}
+      >
+        <SparklyButton href="/about" color={colorValue}>
           Learn More About Me
-        </a>
-        <a 
-          href="/contact" 
-          className="inline-block px-6 py-3 rounded-full bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-100 font-medium hover:bg-gray-400 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
-        >
+        </SparklyButton>
+        <SparklyButton href="/contact" color={colorValue}>
           Get in Touch
-        </a>
+        </SparklyButton>
       </div>
+
+      {/* Hue Slider */}
+      <input
+        type="range"
+        min={0}
+        max={360}
+        className="mt-4"
+        value={colorValue}
+        onChange={(e) => setColorValue(Number(e.target.value))}
+      />
     </div>
   );
 }
