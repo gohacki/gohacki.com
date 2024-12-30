@@ -19,17 +19,17 @@ const galleryImages: GalleryImage[] = [
     alt: "Tower Defence Project",
   },
   {
-    src: "/images/ProjectTwo.png",
+    src: "/images/CodeBuilder.png",
     gifSrc: "/gifs/ProjectTwo.gif",
     alt: "Project Two Overview",
   },
   {
-    src: "/images/ProjectThree.png",
+    src: "/images/GiftDrive.png",
     gifSrc: "/gifs/ProjectThree.gif",
     alt: "Project Three Details",
   },
   {
-    src: "/images/ProjectFour.png",
+    src: "/images/BlackJack.png",
     gifSrc: "/gifs/ProjectFour.gif",
     alt: "Project Four Insights",
   },
@@ -59,15 +59,17 @@ export default function Projects() {
 
   return (
     <div className="pt-32 animate-fadeInUp flex flex-col items-center">
-      <h1 className="text-4xl font-bold mb-8">My Projects</h1>
+      <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg pb-2 mb-16 animate-fadeInUp">
+      Projects
+      </h1>
       <div className={styles.gallery}>
         {galleryImages.map((image, index) => (
           <Image
             key={index}
             src={image.src}
             alt={image.alt}
-            width={400}
-            height={400}
+            width={800}
+            height={800}
             className="cursor-pointer"
             onClick={() => openModal(image)}
             loading="lazy" // Ensure thumbnails are lazy-loaded

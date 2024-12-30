@@ -12,7 +12,7 @@ export default function Home() {
   const [colorValue, setColorValue] = useState<number>(260); // Default hue for sparkles
 
   return (
-    <div className="relative flex flex-col items-center text-center pt-32">
+    <div className="glass p-32 rounded-xl shadow-lg relative flex flex-col items-center text-center pt-32 mt-32">
       {/* Background Canvas */}
     
       {/* Profile Image */}
@@ -45,23 +45,29 @@ export default function Home() {
         Hi! I&apos;m Miro, a Computer Science Student. Welcome to my personal website where you can learn more about me, my work, and how to get in touch.
       </p>
 
-      {/* Sparkly Buttons */}
       <div
         className="flex justify-center space-x-4 animate-fadeInUp"
         style={{ animationDelay: '0.4s' }}
       >
-      <Link href="/about" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-          About Me
-        </span>
-      </Link>
+        <Link
+          href="/about"
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-lg font-semibold text-gray-900 rounded-xl group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+        >
+          <span className="relative px-8 py-4 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-lg group-hover:bg-opacity-0">
+            About Me
+          </span>
+        </Link>
 
-      <Link href="/contact" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-          Get in Touch
-        </span>
-      </Link>
+        <Link
+          href="/contact"
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-lg font-semibold text-gray-900 rounded-xl group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+        >
+          <span className="relative px-8 py-4 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-lg group-hover:bg-opacity-0">
+            Get in Touch
+          </span>
+        </Link>
       </div>
+
     </div>
   );
 }

@@ -101,16 +101,6 @@ body {
   color: transparent;
 }
 
-/* Glassmorphism-like background */
-.glass {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.3);
-}
-
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
@@ -256,4 +246,14 @@ body {
 
 .circular-hobbies:hover {
   animation-play-state: paused;
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Adjust above values to taste */
+}
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
 }

@@ -40,7 +40,7 @@ const BackgroundCanvas: React.FC = () => {
     return {
       x: Math.random() * canvasWidth,
       y: Math.random() * canvasHeight,
-      radius: 0.5 + Math.random() * 1.5, // star size range
+      radius: 0.5 + Math.random() * 5.5, // star size range
       color: starColors[Math.floor(Math.random() * starColors.length)],
       alpha: Math.random(),              // initial alpha (0–1)
       alphaChange: (Math.random() * 0.02 + 0.01) * (Math.random() < 0.5 ? 1 : -1),
