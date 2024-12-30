@@ -3,9 +3,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import BackgroundCanvas from '../components/BackgroundCanvas';
 import blurDataURL from '../data/blurDataURL.json';
-import SparklyButton from '../components/SparklyButton'; // Import the SparklyButton component
+import Link from 'next/link';
+
 
 export default function Home() {
   const [isImageLoaded, setImageLoaded] = useState(false);
@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <div className="relative flex flex-col items-center text-center pt-32">
       {/* Background Canvas */}
-      <BackgroundCanvas />
     
       {/* Profile Image */}
       <div className="relative z-10 mb-8">
@@ -51,23 +50,18 @@ export default function Home() {
         className="flex justify-center space-x-4 animate-fadeInUp"
         style={{ animationDelay: '0.4s' }}
       >
-        <SparklyButton href="/about" color={colorValue}>
-          Learn More About Me
-        </SparklyButton>
-        <SparklyButton href="/contact" color={colorValue}>
-          Get in Touch
-        </SparklyButton>
-      </div>
+      <Link href="/about" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          About Me
+        </span>
+      </Link>
 
-      {/* Hue Slider */}
-      <input
-        type="range"
-        min={0}
-        max={360}
-        className="mt-4"
-        value={colorValue}
-        onChange={(e) => setColorValue(Number(e.target.value))}
-      />
+      <Link href="/contact" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          Get in Touch
+        </span>
+      </Link>
+      </div>
     </div>
   );
 }

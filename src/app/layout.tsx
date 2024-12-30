@@ -4,6 +4,7 @@
 import "../styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import BackgroundCanvas from '../components/BackgroundCanvas';
 
 export default function RootLayout({
   children,
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-gradient-to-br from-white to-gray-100 dark:from-[#0a0a0a] dark:to-[#1a1a1a] transition-all duration-500 ease-in-out">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
+          <BackgroundCanvas />
           {children}
           <div id="modal-root"></div>
         </main>
