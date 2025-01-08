@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   return (
-    <header className="fixed w-full z-50 top-0 left-0 px-4 py-2 md:py-3 glass backdrop-blur-sm shadow-lg transition-all duration-300">
+    <header className="fixed w-full z-50 top-0 left-0 px-4 py-2 md:py-3 backdrop-blur-sm shadow-lg transition-all duration-300">
       <nav className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-black gradient-text hover:scale-105 transform transition-transform duration-300">
           <Link href="/">Miro Gohacki</Link>

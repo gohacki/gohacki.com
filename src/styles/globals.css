@@ -1,20 +1,25 @@
 /* src/styles/globals.css */
 
 @import "open-props/easings.min.css";
-/* src/styles/globals.css */
+/* Tailwind CSS Imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables */
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
+  --icon-fill: #0a0a0a;
+  --icon-fill-hover: #6d28d9;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --icon-fill: #ededed;
+    --icon-fill-hover: #ec4899;
   }
 }
 
@@ -26,7 +31,7 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
 }
 
-/* Custom animations */
+/* Custom Animations */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -38,7 +43,7 @@ body {
   }
 }
 
-/* Utility classes for animations */
+/* Utility Classes for Animations */
 .animate-fadeInUp {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -94,25 +99,11 @@ body {
   }
 }
 
-/* Gradient text utility */
+/* Gradient Text Utility */
 .gradient-text {
   background: linear-gradient(to right, #6d28d9, #ec4899, #ef4444);
   -webkit-background-clip: text;
   color: transparent;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --icon-fill: #0a0a0a;
-  --icon-fill-hover: #6d28d9;
-}
-
-[data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --icon-fill: #ededed;
-  --icon-fill-hover: #ec4899;
 }
 
 /* Sun and Moon Icon Styles */
@@ -192,7 +183,7 @@ body {
   }
 }
 
-/* Perspective for 3D flip effect */
+/* Perspective for 3D Flip Effect */
 .perspective {
   perspective: 1000px;
 }
@@ -248,12 +239,38 @@ body {
   animation-play-state: paused;
 }
 
+/* Glassmorphism Utility */
 .glass {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(236, 72, 154, 0.65);
   /* Adjust above values to taste */
 }
+
 .dark .glass {
   background: rgba(0, 0, 0, 0.3);
+}
+
+/* Button Hover & Active Effects */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Input & Textarea Focus Transitions */
+input:focus,
+textarea:focus {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Optional: Spinner Styling (if needed) */
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

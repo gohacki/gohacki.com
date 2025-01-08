@@ -1,100 +1,87 @@
-// src/app/projects/page.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
-import styles from "./Projects.module.css";
-import Image from "next/image";
-import Modal from "../../components/Modal";
+import React, { useEffect, useRef } from "react";
+import { useScroll } from "framer-motion";
+import Lenis from "lenis"; 
+import Card from "@/components/Card"; // Adjust to your path
+import "./projects.scss";            // optional additional styling
 
-interface GalleryImage {
-  src: string;     // Thumbnail image
-  gifSrc: string;  // GIF for modal
-  alt: string;
-}
-
-const galleryImages: GalleryImage[] = [
+// Example "projects" data — you can adapt
+const projectsData = [
   {
-    src: "/images/TowerDefence.png",
-    gifSrc: "/gifs/TowerDefence.gif",
-    alt: "Tower Defence Project",
+    title: "Tower Defence Project",
+    description: "A small tower defense game built in X.",
+    src: "/images/towerdef.png", // change to your images
+    url: "https://github.com/...",
+    color: "#BBACAF",
   },
   {
-    src: "/images/CodeBuilder.png",
-    gifSrc: "/gifs/ProjectTwo.gif",
-    alt: "Project Two Overview",
+    title: "Project Two Overview",
+    description: "Detailed overview of project two.",
+    src: "/images/project2.png",
+    color: "#977F6D",
   },
   {
-    src: "/images/GiftDrive.png",
-    gifSrc: "/gifs/ProjectThree.gif",
-    alt: "Project Three Details",
+    title: "Project Three Details",
+    description: "Exploring the key challenges and solutions.",
+    src: "/images/project3.png",
+    color: "#C2491D",
   },
   {
-    src: "/images/BlackJack.png",
-    gifSrc: "/gifs/ProjectFour.gif",
-    alt: "Project Four Insights",
+    title: "Project Four Insights",
+    description: "Lessons learned and future directions.",
+    src: "/images/project4.png",
+    color: "#B62429",
   },
 ];
 
 export default function Projects() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [currentImage, setCurrentImage] = useState<GalleryImage | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Preload GIFs after the component mounts
+  // Hook to track overall scroll progress for the entire page
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // (Optional) Lenis: for a smooth scroll effect
   useEffect(() => {
-    galleryImages.forEach((image) => {
-      const gif = new window.Image(); // Use window.Image to reference the global constructor
-      gif.src = image.gifSrc;
+    const lenis = new Lenis({
+      lerp: 0.1,
     });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      // no cleanup necessary for lenis, but you can add if needed
+    };
   }, []);
 
-  const openModal = (image: GalleryImage) => {
-    setCurrentImage(image);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setCurrentImage(null);
-    setIsModalOpen(false);
-  };
-
   return (
-    <div className="pt-32 animate-fadeInUp flex flex-col items-center">
-      <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg pb-2 mb-16 animate-fadeInUp">
-      Projects
-      </h1>
-      <div className={styles.gallery}>
-        {galleryImages.map((image, index) => (
-          <Image
-            key={index}
-            src={image.src}
-            alt={image.alt}
-            width={800}
-            height={800}
-            className="cursor-pointer"
-            onClick={() => openModal(image)}
-            loading="lazy" // Ensure thumbnails are lazy-loaded
-          />
-        ))}
-      </div>
+    <div className="pageContainer" ref={containerRef}>
+      {/* You can style this container with a top margin, etc. */}
+      {projectsData.map((project, i) => {
+        // Calculate the scale for each card so they stack smaller & smaller
+        const targetScale = 1 - (projectsData.length - i) * 0.05;
 
-      {/* Modal Implementation */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {currentImage && (
-          <div className="flex flex-col items-center">
-            <Image
-              src={currentImage.gifSrc}
-              alt={currentImage.alt}
-              width={800}
-              height={800}
-              className="rounded-lg"
-              priority // Optional: prioritize loading when in modal
-            />
-            <p className="mt-4 text-lg text-gray-700 dark:text-gray-200">
-              {currentImage.alt}
-            </p>
-          </div>
-        )}
-      </Modal>
+        return (
+          <Card
+            key={i}
+            i={i}
+            title={project.title}
+            description={project.description || ""}
+            src={project.src}
+            url={project.url}
+            color={project.color}
+            progress={scrollYProgress}
+            range={[i * 0.25, 1]}      // a rough example range
+            targetScale={targetScale}
+          />
+        );
+      })}
     </div>
   );
 }
