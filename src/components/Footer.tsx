@@ -10,9 +10,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative mt-16 p-8 text-center text-sm font-light text-gray-600 dark:text-gray-300">
+    <footer className="relative mt-8 p-8 text-center text-sm font-light text-gray-600 dark:text-gray-300">
       <p className="opacity-80">
-        &copy; {year} Miro Gohacki. All rights reserved.
+         Miro Gohacki. {year}
       </p>
     </footer>
   );

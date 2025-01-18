@@ -1,4 +1,3 @@
-// src/app/about/page.tsx
 "use client";
 
 import React from "react";
@@ -37,27 +36,91 @@ const hobbies = [
   { icon: "🎮", name: "Gaming" },
 ];
 
+// New Job Experience Data
+const jobExperiences = [
+  {
+    position: "Senior Software Engineer",
+    company: "Tech Innovators Inc.",
+    duration: "Jan 2020 - Present",
+    description:
+      "Leading a team of developers in building scalable web applications. Implemented microservices architecture and improved system performance by 30%.",
+  },
+  {
+    position: "Software Engineer",
+    company: "Web Solutions LLC",
+    duration: "Jun 2017 - Dec 2019",
+    description:
+      "Developed and maintained client-facing websites using React and Node.js. Collaborated with designers to create responsive and user-friendly interfaces.",
+  },
+  {
+    position: "Junior Developer",
+    company: "Startup Hub",
+    duration: "Jul 2015 - May 2017",
+    description:
+      "Assisted in the development of mobile applications and performed bug fixes. Gained experience in full-stack development and Agile methodologies.",
+  },
+];
+
 export default function About() {
   return (
     <div className="pt-32 animate-fadeInUp px-4">
       {/* Header Section */}
-      <h1 className="text-5xl text-center md:text-6xl font-extrabold gradient-text drop-shadow-lg pb-2 mb-16 animate-fadeInUp">About Me</h1>
+      <h1 className="text-5xl text-center md:text-6xl font-extrabold gradient-text drop-shadow-lg pb-2 mb-16 animate-fadeInUp">
+        About Me
+      </h1>
       <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto text-center">
         A small subset of themes in my personal life.
       </p>
+
+      {/* Job Experience Section */}
+      <section className="mt-16 mb-16 px-4">
+        <div className="glass p-8 rounded-xl shadow-lg">
+          <h2 className="text-3xl font-bold mb-8 text-center">Job Experience</h2>
+          <div className="space-y-6">
+            {jobExperiences.map((job, index) => (
+              <div key={index} className="border-l-4 border-pink-500 pl-4">
+                <h3 className="text-2xl font-semibold">{job.position}</h3>
+                <p className="text-xl text-gray-600 dark:text-gray-300">
+                  {job.company} &middot; <span className="italic">{job.duration}</span>
+                </p>
+                <p className="mt-2 text-gray-700 dark:text-gray-200">{job.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Spotify Embed Section */}
       <section className="mt-16 mb-16 px-4">
         <div className="glass p-8 rounded-xl shadow-lg">
-          <h2 className="text-3xl font-bold mb-4 text-center">Some of my All time Favorites</h2>
+          <h2 className="text-3xl font-bold mb-4 text-center"></h2>
           <div className="flex gap-x-2 flex-col md:flex-row">
             <div className="flex-auto spotify-embed-container mx-auto max-w-xl">
-              <iframe src="https://open.spotify.com/embed/track/2eDdFHgqNJltzlvlZFVDWd?utm_source=generator" width="100%" height="500" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              <iframe
+                src="https://open.spotify.com/embed/track/2eDdFHgqNJltzlvlZFVDWd?utm_source=generator"
+                width="100%"
+                height="500"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             </div>
             <div className="flex-auto spotify-embed-container mx-auto max-w-xl">
-              <iframe src="https://open.spotify.com/embed/album/0Lg1uZvI312TPqxNWShFXL?utm_source=generator" width="100%" height="500" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              <iframe
+                src="https://open.spotify.com/embed/album/0Lg1uZvI312TPqxNWShFXL?utm_source=generator"
+                width="100%"
+                height="500"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             </div>
             <div className="flex-auto spotify-embed-container mx-auto max-w-xl">
-              <iframe src="https://open.spotify.com/embed/album/0Lg1uZvI312TPqxNWShFXL?utm_source=generator" width="100%" height="500" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              <iframe
+                src="https://open.spotify.com/embed/album/0Lg1uZvI312TPqxNWShFXL?utm_source=generator"
+                width="100%"
+                height="500"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
         </div>

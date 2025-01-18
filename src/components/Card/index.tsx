@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({
       <motion.div
         className={styles.card}
         style={{
-          backgroundColor: color,
+          background: color,
           scale,
           top: `calc(-5vh + ${i * 25}px)`, // similar to your example
         }}

@@ -12,16 +12,16 @@ export default function Home() {
   const [colorValue, setColorValue] = useState<number>(260); // Default hue for sparkles
 
   return (
-    <div className="glass p-32 rounded-xl shadow-lg relative flex flex-col items-center text-center pt-32 mt-32">
-      {/* Background Canvas */}
+    <div className="flex flex-row justify-center items-center">
+    <div className="glass p-8 rounded-xl shadow-lg relative flex flex-col items-center text-center mt-12 w-3/4">
     
       {/* Profile Image */}
       <div className="relative z-10 mb-8">
         <Image
           src="/images/miro.png"
           alt="Miro Gohacki"
-          width={400}
-          height={400}
+          width={250}
+          height={250}
           className={`rounded-full border-2 border-pink-500 shadow-lg transition-opacity duration-700 ease-in-out ${
             isImageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
@@ -31,11 +31,6 @@ export default function Home() {
           priority
         />
       </div>
-
-      {/* Title */}
-      <h1 className="text-5xl md:text-6xl font-extrabold gradient-text drop-shadow-lg mb-6 animate-fadeInUp">
-        Miro Gohacki
-      </h1>
 
       {/* Subtitle */}
       <p
@@ -67,7 +62,7 @@ export default function Home() {
           </span>
         </Link>
       </div>
-
+    </div>
     </div>
   );
 }

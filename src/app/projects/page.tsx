@@ -7,33 +7,37 @@ import Card from "@/components/Card"; // Adjust to your path
 import "./projects.scss";            // optional additional styling
 
 // Example "projects" data — you can adapt
+// Example "projects" data with purple-pink styled gradients
 const projectsData = [
   {
     title: "Tower Defence Project",
     description: "A small tower defense game built in X.",
-    src: "/images/towerdef.png", // change to your images
+    src: "/images/TowerDefence.png",
     url: "https://github.com/...",
-    color: "#BBACAF",
+    // Purple 500 -> Pink 500
+    color: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
   },
   {
-    title: "Project Two Overview",
+    title: "GiveGyftly.com",
     description: "Detailed overview of project two.",
-    src: "/images/project2.png",
-    color: "#977F6D",
+    src: "/images/Gyftly.png",
+    color: "linear-gradient(135deg, #c084fc 0%, #f9a8d4 100%)",
   },
   {
     title: "Project Three Details",
-    description: "Exploring the key challenges and solutions.",
-    src: "/images/project3.png",
-    color: "#C2491D",
+    description: "Exploring key challenges and solutions.",
+    src: "/images/CodeBuilder.png",
+    color: "linear-gradient(135deg, #d946ef 0%, #f472b6 100%)",
   },
   {
-    title: "Project Four Insights",
+    title: "Real Estate Listing Platform",
     description: "Lessons learned and future directions.",
-    src: "/images/project4.png",
-    color: "#B62429",
+    src: "/images/RealEstate.png",
+    color: "linear-gradient(135deg, #9333ea 0%, #db2777 100%)",
   },
 ];
+
+
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,8 +65,19 @@ export default function Projects() {
   }, []);
 
   return (
+    <>
+    <div className="flex flex-col items-center text-center">
+    <div className="pt-32 animate-fadeInUp px-4">
+      {/* Header Section */}
+      <h1 className="text-5xl text-center md:text-6xl font-extrabold gradient-text drop-shadow-lg pb-2 mb-16 animate-fadeInUp">Projects</h1>
+    </div>
+    <p
+        className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-xl mb-8 animate-fadeInUp"
+      >
+        These are a few notable projects I am currently working on or have completed while attending college.
+      </p>
+      </div>
     <div className="pageContainer" ref={containerRef}>
-      {/* You can style this container with a top margin, etc. */}
       {projectsData.map((project, i) => {
         // Calculate the scale for each card so they stack smaller & smaller
         const targetScale = 1 - (projectsData.length - i) * 0.05;
@@ -83,5 +98,6 @@ export default function Projects() {
         );
       })}
     </div>
+    </>
   );
 }
