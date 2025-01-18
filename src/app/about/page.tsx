@@ -69,7 +69,7 @@ export default function About() {
         About Me
       </h1>
       <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto text-center">
-        A small subset of themes in my personal life.
+        This page is really a WIP
       </p>
 
       {/* Job Experience Section */}

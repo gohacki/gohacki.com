@@ -37,7 +37,7 @@ export default function Home() {
         className="text-lg md:text-xl text-gray-700 dark:text-gray-200 max-w-xl mb-8 animate-fadeInUp"
         style={{ animationDelay: '0.2s' }}
       >
-        Hi! I&apos;m Miro, a Computer Science Student. Welcome to my personal website where you can learn more about me, my work, and how to get in touch.
+        Hi! I&apos;m Miro, a Computer Science Student at UVM. Welcome to my personal website. Its still a work in progress :)
       </p>
 
       <div
